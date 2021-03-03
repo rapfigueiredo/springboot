@@ -1,0 +1,22 @@
+schemaVersion: '2.0.0'
+globalEnvVars:
+- key: 'JAVA_HOME'
+  value: '/usr/lib/jvm/zulu8-ca'
+- key: 'PATH'
+  value: '${JAVA_HOME}:${PATH}'  
+metadataTest:
+  env:    
+  - key: 'JAVA_OPTS'
+    value: ''
+  - key: 'PROG_OPTS'
+    value: ''
+  - key: 'JARFILE_APP_NAME'
+    value: 'app.jar'
+
+commandTests:
+- name: "check entrypoint.sh"
+  command: "sh"
+  args:
+    - -c
+    - |       
+      /entrypoint.sh

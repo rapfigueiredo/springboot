@@ -1,0 +1,21 @@
+schemaVersion: '2.0.0'
+globalEnvVars:
+- key: 'JAVA_HOME'
+  value: '/usr/lib/jvm/zulu8-ca'
+fileExistenceTests:
+- name: 'check ARG COPY RUN app.jar'
+  path: /app/app.jar
+  shouldExist: true
+  permissions: '-rw-r--r--'
+  uid: 1001
+  gid: 1001
+commandTests:
+- name: "check entrypoint.sh"
+  command: "sh"
+  args:
+    - -c
+    - |       
+      /entrypoint.sh
+- name: 'check USER'
+  command: "whoami"      
+  expectedOutput: ["springboot"]         

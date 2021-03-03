@@ -1,0 +1,35 @@
+schemaVersion: '2.0.0'
+globalEnvVars:
+fileExistenceTests: 
+- name: 'entrypoint'
+  path: /entrypoint.sh
+  shouldExist: true
+  permissions: '-rwxr--r--'
+  uid: 1001
+  gid: 1001
+  isExecutableBy: 'owner'           
+fileContentTests:
+commandTests:
+- name: 'check USER gid'
+  command: "id"
+  args: ["-g","springboot"]
+  expectedOutput: ["1001"]
+- name: 'check USER uid'
+  command: "id"
+  args: ["-u","springboot"]
+  expectedOutput: ["1001"]  
+- name: "check java"
+  command: "sh"
+  args:
+    - -c
+    - |       
+      java -version 2>&1 | awk -F '"' '/version/ {print $2}'
+  expectedOutput: ["openjdk version \"1.8.0_282\""]               
+metadataTest:
+  env:
+  - key: 'SERVER_HOSTNAME'
+    value: 'localhost'
+  - key: 'SERVER_PORT'
+    value: '8080'
+  - key: 'JARFILE_APP_NAME'
+    value: 'app.jar'    

@@ -1,0 +1,13 @@
+ARG BASE_IMAGE=""
+FROM ${BASE_IMAGE}
+
+ARG JAR_FILE=""
+
+COPY ${JAR_FILE} /app/${JARFILE_APP_NAME}
+
+RUN chmod 644 /app/${JARFILE_APP_NAME} && chown -R springboot: /app/${JARFILE_APP_NAME}
+RUN chmod 755 /app && chown -R springboot: /app
+
+USER springboot
+
+WORKDIR /app
