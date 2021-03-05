@@ -7,7 +7,21 @@ fileExistenceTests:
   permissions: '-rwxr--r--'
   uid: 1001
   gid: 1001
-  isExecutableBy: 'owner'           
+  isExecutableBy: 'owner'
+- name: 'java dir'
+  path: /usr/lib/jvm/zulu8-ca
+  shouldExist: true
+  permissions: 'drwxr-xr-x'
+  uid: 1001
+  gid: 1001
+  isExecutableBy: 'owner'
+- name: 'log dir'
+  path: /var/log
+  shouldExist: true
+  permissions: 'drwxr-xr-x'
+  uid: 1001
+  gid: 1001
+  isExecutableBy: 'owner'              
 fileContentTests:
 commandTests:
 - name: 'check USER gid'

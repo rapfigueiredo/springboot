@@ -27,6 +27,8 @@ RUN chmod 744 /entrypoint.sh && chown springboot: /entrypoint.sh
 
 RUN chown -R springboot: $JAVA_HOME
 
+RUN chown -R springboot: /var/log
+
 HEALTHCHECK --interval=15s --timeout=15s --start-period=40s \
  CMD wget --quiet --tries=3 --spider http://${SERVER_HOSTNAME}:${SERVER_PORT}/actuator/health || exit
 
